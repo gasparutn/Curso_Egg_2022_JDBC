@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group name="Intro JAVA">
+            <file>file:/C:/Users/gaspa/Documents/NetBeansProjects/JDBC/Tienda/src/tienda/entidades/fabricante.java</file>
+            <file>file:/C:/Users/gaspa/Documents/NetBeansProjects/JDBC/Tienda/src/tienda/persistencia/DAO.java</file>
+            <file>file:/C:/Users/gaspa/Documents/NetBeansProjects/JDBC/Tienda/src/tienda/persistencia/EntidadDaoExt.java</file>
+            <file>file:/C:/Users/gaspa/Documents/NetBeansProjects/JDBC/Tienda/src/tienda/Main.java</file>
+            <file>file:/C:/Users/gaspa/Documents/NetBeansProjects/JDBC/Tienda/src/tienda/entidades/Producto.java</file>
+            <file>file:/C:/Users/gaspa/Documents/NetBeansProjects/JDBC/Tienda/src/tienda/servicios/servis.java</file>
+        </group>
+        <group>
+            <file>file:/D:/seclegtec/Documents/NetBeansProjects/Tienda/src/tienda/Main.java</file>
+            <file>file:/D:/seclegtec/Documents/NetBeansProjects/Tienda/src/tienda/entidades/Producto.java</file>
+            <file>file:/D:/seclegtec/Documents/NetBeansProjects/Tienda/src/tienda/persistencia/DAO.java</file>
+            <file>file:/D:/seclegtec/Documents/NetBeansProjects/Tienda/src/tienda/servicios/servis.java</file>
+            <file>file:/D:/seclegtec/Documents/NetBeansProjects/Tienda/src/tienda/entidades/fabricante.java</file>
+        </group>
+    </open-files>
+</project-private>
