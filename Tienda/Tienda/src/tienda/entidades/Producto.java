@@ -42,7 +42,7 @@ public class Producto {
         this.precio = precio;
     }
 
-    public int getCodigoFabricantel() {
+    public int getCodigoFabricante() {
         return codigoFabricante;
     }
 
