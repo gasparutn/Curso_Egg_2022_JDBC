@@ -12,7 +12,7 @@ public class Main {
 
         servis tablaP = new servis();
         while (true) {
-            System.out.println("*******INGRESE LA OPCION DE CONSULTA QUE DESEE*******");
+            System.out.println("*******INGRESE LA OPCION DE CONSULTA QUE DESEE INDICANDO LA LETRA*******");
             System.out.println("");
             System.out.println("a. Lista el nombre de todos los productos que hay en la tabla producto.");
             System.out.println("b. Nombres y los precios de todos los productos de la tabla producto.");
@@ -27,7 +27,7 @@ public class Main {
             menu = leer.nextLine();
             System.out.println("");
 
-            if (menu.equals("salir")) {
+            if (menu.equals("h")) {
                 break;
             }
 
@@ -81,31 +81,27 @@ public class Main {
                         System.out.println("Ingrese el precio el producto: ");
                         agregar.setPrecio(leer.nextDouble());
                         leer.nextLine();
-                        boolean validar=false;
+                        boolean validar = false;
                         System.out.println("Ingrese el numero de fabrincante: ");
                         int codigo = leer.nextInt();
                         do {
                             agregar.setCodigoFabricante(codigo);
 
                             if (tablaP.buscarcodigoFabricanteDisp(codigo) == null) {
-
-                                System.out.println("Ingrese un nuevo de fabrincante: ");
+                                System.out.println("*****CODIGO DE FABRICANTE INEXISTENTE*****");
+                                System.out.println("");
+                                System.out.println("Ingrese un codigo de fabricante existente porfavor: ");
                                 codigo = leer.nextInt();
                             } else {
-
                                 validar = true;
-
                             }
-
                         } while (validar = false);
                         agregar.setCodigoFabricante(codigo);
                         tablaP.agregarProducto(agregar);
 
                     } catch (Exception e) {
                         throw e;
-
                     }
-
                     break;
                 /*
                     
@@ -113,19 +109,14 @@ public class Main {
                 case "g":
 
                     break;
-
+                 */
                 case "h":
 
                     break;
 
                 default:
-                    System.out.println("Ha ingresado un letra incorrecta");
+                    System.out.println("*****Ha ingresado un letra incorrecta******\n          >>>>VUELVA A INTENTAR<<<<\n");
 
-            }
-        }
-
-    }
-                 */
             }
         }
     }
