@@ -11,11 +11,11 @@ public class Producto {
     public Producto() {
     }
 
-    public Producto(int codigo, String nombre, double precio, int codigoFabricantel) {
+    public Producto(int codigo, String nombre, double precio, int codigoFabricante) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
-        this.codigoFabricante = codigoFabricantel;
+        this.codigoFabricante = codigoFabricante;
     }
 
     public int getCodigo() {
@@ -46,8 +46,8 @@ public class Producto {
         return codigoFabricante;
     }
 
-    public void setCodigoFabricantel(int codigoFabricantel) {
-        this.codigoFabricante = codigoFabricantel;
+    public void setCodigoFabricante(int codigoFabricante) {
+        this.codigoFabricante = codigoFabricante;
     }
 
     @Override

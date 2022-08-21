@@ -81,19 +81,29 @@ public class Main {
                         System.out.println("Ingrese el precio el producto: ");
                         agregar.setPrecio(leer.nextDouble());
                         leer.nextLine();
-                        
+                        boolean validar=false;
                         System.out.println("Ingrese el numero de fabrincante: ");
                         int codigo = leer.nextInt();
-                        agregar.setCodigoFabricantel(codigo);
-                        leer.nextLine();
-                        
-                        if (tablaP.buscarcodigoFabricanteDisp(codigo) == null) {
-                            throw new Exception("No existe un fabricante con ese codigo");
-                        }
+                        do {
+                            agregar.setCodigoFabricante(codigo);
 
+                            if (tablaP.buscarcodigoFabricanteDisp(codigo) == null) {
+
+                                System.out.println("Ingrese un nuevo de fabrincante: ");
+                                codigo = leer.nextInt();
+                            } else {
+
+                                validar = true;
+
+                            }
+
+                        } while (validar = false);
+                        agregar.setCodigoFabricante(codigo);
                         tablaP.agregarProducto(agregar);
+
                     } catch (Exception e) {
                         throw e;
+
                     }
 
                     break;

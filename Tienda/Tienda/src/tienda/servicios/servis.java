@@ -22,7 +22,7 @@ public class servis extends DAO {
                 todos = new Producto();
                 todos.setNombre(resultado.getString("nombre"));
                 todos.setPrecio(resultado.getDouble("precio"));
-                todos.setCodigoFabricantel(resultado.getInt("Codigo_Fabricante"));
+                todos.setCodigoFabricante(resultado.getInt("Codigo_Fabricante"));
                 todos.setCodigo(resultado.getInt("Codigo"));
                 nombres.add(todos);
             }
@@ -48,7 +48,7 @@ public class servis extends DAO {
                 todos = new Producto();
                 todos.setNombre(resultado.getString("nombre"));
                 todos.setPrecio(resultado.getDouble("precio"));
-                todos.setCodigoFabricantel(resultado.getInt("Codigo_Fabricante"));
+                todos.setCodigoFabricante(resultado.getInt("Codigo_Fabricante"));
                 todos.setCodigo(resultado.getInt("Codigo"));
                 nombres.add(todos);
             }
@@ -74,7 +74,7 @@ public class servis extends DAO {
                 todos = new Producto();
                 todos.setNombre(resultado.getString("nombre"));
                 todos.setPrecio(resultado.getDouble("precio"));
-                todos.setCodigoFabricantel(resultado.getInt("Codigo_Fabricante"));
+                todos.setCodigoFabricante(resultado.getInt("Codigo_Fabricante"));
                 todos.setCodigo(resultado.getInt("Codigo"));
                 portatil.add(todos);
             }
@@ -100,7 +100,7 @@ public class servis extends DAO {
                 todos = new Producto();
                 todos.setNombre(resultado.getString("nombre"));
                 todos.setPrecio(resultado.getDouble("precio"));
-                todos.setCodigoFabricantel(resultado.getInt("Codigo_Fabricante"));
+                todos.setCodigoFabricante(resultado.getInt("Codigo_Fabricante"));
                 todos.setCodigo(resultado.getInt("Codigo"));
                 preBarato.add(todos);
             }

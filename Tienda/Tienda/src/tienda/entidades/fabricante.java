@@ -4,7 +4,7 @@ package tienda.entidades;
 public class fabricante {
     private int codigo;
     private String nombre;
-
+   
     public fabricante() {
     }
 
