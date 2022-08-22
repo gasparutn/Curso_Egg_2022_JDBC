@@ -41,7 +41,7 @@ public abstract class DAO {
             if (conexion != null) {
                 conexion.close();
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             throw e;
         }
     }
@@ -68,7 +68,7 @@ public abstract class DAO {
             conectarBase();  // me conecto a la base de datos
             sentencia = conexion.createStatement(); // preparo una sentencia
             resultado = sentencia.executeQuery(sql); // albergo  el producto 
-                                                      //de la consulta(ejem todas las mascotas)
+            //de la consulta(ejem todas las mascotas)
 
         } catch (Exception ex) {
             throw ex;

@@ -1,30 +1,34 @@
-package tienda.servicios;
+package tienda.persistencia;
 
 import java.util.ArrayList;
-
+import java.util.Collection;
 import tienda.entidades.Producto;
-import tienda.entidades.fabricante;
-import tienda.persistencia.DAO;
+import tienda.entidades.Fabricante;
 
-public class servis extends DAO {
+public class ProductoDAO extends DAO {
 
-    public ArrayList<Producto> listarNombres() throws Exception {
+    public ProductoDAO() {
+    }
 
+    public Collection<Producto> listarNombres() throws Exception {
+        Collection<Producto> nombres = new ArrayList();
         try {
             String sql;
-            sql = "SELECT * FROM producto";
+            sql = "SELECT * FROM producto p LEFT JOIN fabricante f ON f.codigo = p.codigo_fabricante;";
 
             consultarBase(sql);
-
-            Producto todos = null;
-            ArrayList<Producto> nombres = new ArrayList();
+            Producto todosp = null;
+            Fabricante todosf = null;
             while (resultado.next()) {
-                todos = new Producto();
-                todos.setNombre(resultado.getString("nombre"));
-                todos.setPrecio(resultado.getDouble("precio"));
-                todos.setCodigoFabricante(resultado.getInt("Codigo_Fabricante"));
-                todos.setCodigo(resultado.getInt("Codigo"));
-                nombres.add(todos);
+                todosp = new Producto();
+                todosf = new Fabricante();
+                todosp.setCodigo(resultado.getInt("Codigo"));
+                todosp.setNombre(resultado.getString("nombre"));
+                todosp.setPrecio(resultado.getDouble("precio"));
+                todosp.setCodigoFabricante(resultado.getInt("Codigo_Fabricante"));
+                todosf.setCodigo(resultado.getInt(5));
+                todosf.setNombre(resultado.getString(6));
+                nombres.add(todosp);
             }
             desconectarBase();
             return nombres;
@@ -32,7 +36,6 @@ public class servis extends DAO {
             e.printStackTrace();
             throw new Exception("Error de sistema");
         }
-
     }
 
     public ArrayList<Producto> productoPreMayor() throws Exception {
@@ -58,7 +61,6 @@ public class servis extends DAO {
             e.printStackTrace();
             throw new Exception("Error de sistema");
         }
-
     }
 
     public ArrayList<Producto> nombrePortatil() throws Exception {
@@ -84,7 +86,6 @@ public class servis extends DAO {
             e.printStackTrace();
             throw new Exception("Error de sistema");
         }
-
     }
 
     public ArrayList<Producto> listPreBarato() throws Exception {
@@ -110,48 +111,5 @@ public class servis extends DAO {
             e.printStackTrace();
             throw new Exception("Error de sistema");
         }
-
     }
-
-    public void agregarProducto(Producto agregar) throws Exception {
-
-        try {
-
-            if (agregar == null) {
-                throw new Exception("Debe ingresar un producto");
-            }
-            //INSERT INTO Producto (nombre,precio,codigo_fabricante VALUES ('compu', 200 , 2);
-            String sql = "INSERT INTO producto (nombre,precio,codigo_fabricante) VALUES ('"+agregar.getNombre()+"', "+agregar.getPrecio()+" ,"+agregar.getCodigoFabricante()+");";
-
-            insertarModificarEliminar(sql);
-
-        } catch (Exception e) {
-            throw e;
-        }
-
-    }
-
-    public fabricante buscarcodigoFabricanteDisp(int codigo) throws Exception {
-        try {
-
-            String sql = "Select * from fabricante where codigo=" + codigo +";";
-
-            consultarBase(sql);
-            fabricante f = null;
-            while (resultado.next()) {
-                f = new fabricante();
-                f.setCodigo(resultado.getInt("codigo"));
-                f.setFabricante(resultado.getString("nombre"));
-                
-            }
-            desconectarBase();
-            return f;
-        } catch (Exception e) {
-            desconectarBase();
-            throw e;
-            
-        }
-
-    }
-
 }

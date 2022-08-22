@@ -8,10 +8,11 @@ public class Producto {
     private double precio;
     private int codigoFabricante;
     
+
     public Producto() {
     }
 
-    public Producto(int codigo, String nombre, double precio, int codigoFabricante) {
+    public Producto(int codigo, String nombre, double precio, int codigoFabricante, Fabricante fabricante) {
         this.codigo = codigo;
         this.nombre = nombre;
         this.precio = precio;
@@ -52,7 +53,7 @@ public class Producto {
 
     @Override
     public String toString() {
-        return "producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", codigoFabricantel=" + codigoFabricante + '}';
+        return "Producto{" + "codigo=" + codigo + ", nombre=" + nombre + ", precio=" + precio + ", codigoFabricante=" + codigoFabricante +" }" ;
     }
     
 }

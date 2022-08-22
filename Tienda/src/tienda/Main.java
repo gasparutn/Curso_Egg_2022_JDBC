@@ -1,8 +1,9 @@
 package tienda;
 
-import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Scanner;
 import tienda.entidades.Producto;
+import tienda.persistencia.ProductoDAO;
 import tienda.servicios.servis;
 
 public class Main {
@@ -10,6 +11,7 @@ public class Main {
     public static void main(String[] args) throws Exception {
         Scanner leer = new Scanner(System.in).useDelimiter("\n");
 
+        ProductoDAO consultas = new ProductoDAO();
         servis tablaP = new servis();
         while (true) {
             System.out.println("*******INGRESE LA OPCION DE CONSULTA QUE DESEE INDICANDO LA LETRA*******");
@@ -21,28 +23,28 @@ public class Main {
             System.out.println("e. Listar el nombre y el precio del producto más barato.");
             System.out.println("f. Ingresar un producto a la base de datos.");
             System.out.println("g. Editar un producto con datos a elección.");
-            System.out.println("h. Salir");
+            System.out.println("h. Eliminar Producto Fabricante");
+            System.out.println("i. Salir");
 
             String menu = "";
             menu = leer.nextLine();
             System.out.println("");
 
-            if (menu.equals("h")) {
+            if (menu.equals("i")) {
                 break;
             }
-
             switch (menu) {
 
                 case "a":
-                    ArrayList<Producto> productos = tablaP.listarNombres();
+                    Collection<Producto> listnombres = consultas.listarNombres();
                     System.out.println("Productos que hay en la tabla producto:\n");
-                    for (Producto p : productos) {
+                    for (Producto p : listnombres) {
                         System.out.println(p.getNombre());
                     }
                     break;
 
                 case "b":
-                    ArrayList<Producto> listProdyPre = tablaP.listarNombres();
+                    Collection<Producto> listProdyPre = consultas.listarNombres();
                     System.out.println("Nombres y precios de productos:\n");
                     for (Producto p : listProdyPre) {
                         System.out.println("Nombre: " + p.getNombre() + "\nPrecio: " + p.getPrecio());
@@ -50,7 +52,7 @@ public class Main {
                     break;
 
                 case "c":
-                    ArrayList<Producto> PrecEntre = tablaP.productoPreMayor();
+                    Collection<Producto> PrecEntre = consultas.productoPreMayor();
                     System.out.println("Productos con precio entre $120 y $202\n");
                     for (Producto p : PrecEntre) {
                         System.out.println("Nombre: " + p.getNombre() + " Precio: " + p.getPrecio());
@@ -58,7 +60,7 @@ public class Main {
                     break;
 
                 case "d":
-                    ArrayList<Producto> ListPortatil = tablaP.nombrePortatil();
+                    Collection<Producto> ListPortatil = consultas.nombrePortatil();
                     System.out.println("Lista de Portátiles\n");
                     for (Producto p : ListPortatil) {
                         System.out.println("Nombre: " + p.getNombre());
@@ -66,7 +68,7 @@ public class Main {
                     break;
 
                 case "e":
-                    ArrayList<Producto> barato = tablaP.listPreBarato();
+                    Collection<Producto> barato = consultas.listPreBarato();
                     System.out.println("Precio del Producto más barato:\n");
                     for (Producto p : barato) {
                         System.out.println("Nombre: " + p.getNombre() + " Precio: " + p.getPrecio());
@@ -95,6 +97,7 @@ public class Main {
                             } else {
                                 validar = true;
                             }
+
                         } while (validar = false);
                         agregar.setCodigoFabricante(codigo);
                         tablaP.agregarProducto(agregar);
@@ -103,14 +106,77 @@ public class Main {
                         throw e;
                     }
                     break;
-                /*
-                    
-                   
-                case "g":
 
+                case "g":
+                    try {
+                        servis modOK = new servis();
+                        System.out.println("Ingrese el codigo del producto que desea modificar a la tabla producto:");
+                        Producto mod = modOK.buscarcodigoproducto(leer.nextInt());
+                        leer.nextLine();
+                        if (mod == null) {
+                            throw new Exception("No existe producto");
+                        } else {
+                            while (true) {
+                                System.out.println("****USTED SELECCIONÓ****:\n");
+                                System.out.println(mod.toString() + "\n");
+                                System.out.println("Que columna quiere modificar?");
+                                System.out.println("a. Nombre");
+                                System.out.println("b. Precio");
+                                System.out.println("c. Codigo fabricante");
+                                System.out.println("S. SALIR");
+
+                                String submenu = leer.nextLine();
+                                if (submenu.equals("salir")) {
+                                    break;
+                                }
+                                switch (submenu) {
+
+                                    case "a":
+                                        System.out.println("Ingrese nuevo nombre: ");
+                                        mod.setNombre(leer.nextLine());
+                                        modOK.editaruProducto(mod);
+                                        System.out.println("Se ha actualizado el nombre");
+                                        break;
+                                    case "b":
+                                        System.out.println("Ingrese nuevo precio: ");
+                                        mod.setPrecio(leer.nextDouble());
+                                        leer.nextLine();
+                                        modOK.editaruProducto(mod);
+                                        System.out.println("Se ha actualizado el precio");
+                                        break;
+                                    case "c":
+                                        System.out.println("Ingrese nuevo codigo de fabricante: ");
+                                        int cod = leer.nextInt();
+                                        leer.nextLine();
+                                        if (modOK.buscarcodigoFabricanteDisp(cod) != null) {
+                                            mod.setCodigoFabricante(cod);
+                                            modOK.editaruProducto(mod);
+                                            System.out.println("Se ha actualizado el codigo de fabricante");
+                                        } else {
+                                            System.out.println("El codigo de fabricante no existe");
+                                        }
+                                        break;
+                                    default:
+                                        System.out.println("Ha ingresa una letra incorrecta");
+                                }
+                            }
+                        }
+                    } catch (Exception e) {
+                        throw e;
+                    }
                     break;
-                 */
+
                 case "h":
+                    try {
+                        servis elimina = new servis();
+                        System.out.println("Ingrese el nombre del producto que desea eliminar");
+                        elimina.eliminarproducto(leer.nextLine());
+
+                    } catch (Exception e) {
+                        throw e;
+                    }
+
+                case "i":
 
                     break;
 
